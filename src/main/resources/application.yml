@@ -1,0 +1,38 @@
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: zjk-picture-backend
+  # 激活本地配置文件 application-local.yml（数据库密码等私密信息都在那里）
+  profiles:
+    active: local
+#    开放更大的文件上传体积
+  servlet:
+    multipart:
+      max-file-size: 10MB
+mybatis-plus:
+  configuration:
+#    Mybatis配置
+    map-underscore-to-camel-case: false
+#    仅在开发环境打印日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+#      逻辑删除
+      logic-delete-field: isDelete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+#      接口文档配置
+knife4j:
+  enable: true
+  openapi:
+    title: 接口文档
+    version: 1.0
+    group:
+      default:
+        group-name: 默认分组
+        api-rule: package
+        api-rule-resources:
+          - com.zjk.zjkpicturebackend.controller
